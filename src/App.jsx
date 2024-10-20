@@ -1,7 +1,7 @@
 // src/App.jsx
 import './App.css'
 
-import { index } from "./services/starshipService"
+import { index, search } from "./services/starshipService"
 import { useState, useEffect } from "react"
 
 import StarshipSearch from './components/StarshipSearch'
@@ -23,10 +23,11 @@ const App = () => {
     }
     getStarships();
   }, [])
-  
-  function findStarships(searchTerm) {
-    setSearchTerm(searchTerm)
-  }
+
+  const findStarships = async (searchTerm) => {
+    const data = await search(searchTerm);
+    setStarships(data)
+  };
 
   return (
     <main>

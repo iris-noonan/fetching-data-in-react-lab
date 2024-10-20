@@ -5,11 +5,13 @@ const StarshipSearch = (props) => {
   const [search, setSearchTerm] = useState("")
   
   const handleInputChange = (event) => {
-    setSearchTerm(event.target.value)
+    setSearchTerm(event.target.value);
   }
   
-  const handleSubmit = () => {
-    props.search(search)
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.search(search);
+    setSearchTerm('');
   }
   return (
     <>
@@ -19,7 +21,7 @@ const StarshipSearch = (props) => {
         <input
           id="search"
           name="search"
-          value={search.term}
+          value={search}
           onChange={handleInputChange}
         />
         <button type="submit">Search</button>

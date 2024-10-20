@@ -1,9 +1,8 @@
-const BASE_URL = 'http://swapi.dev/api'
+const BASE_URL = 'http://swapi.dev/api/starships'
 
 export const index = async () => {
   try {
-    console.log('FIND')
-    const res = await fetch(BASE_URL + '/starships')
+    const res = await fetch(BASE_URL)
     const data = await res.json()
     return data.results
   } catch (error) {
@@ -11,3 +10,13 @@ export const index = async () => {
   }
 }
 
+export const search = async (searchTerm) => {
+  try {
+    const queryString = `/?search=${searchTerm}`;
+    const res = await fetch(BASE_URL + queryString);
+    const data = await res.json()
+    return data.results
+  } catch (error) {
+    console.log('Error: ', error)
+  }
+};
